@@ -3,6 +3,8 @@
 ## What is it?
 It is a small external exec provider for Kubernetes that delegates getting and refreshing the access token to the `gcloud` command-line tool.
 
+Normally `kubectl` already refreshes tokens automatically, but third-party clients and libraries don't typically support all the various auth flows that you may have specified in your K8S config file. The `exec` flow seems to be well-supported (e.g. by the fabric8.io kubernetes-client for Java) and this is a bridge between that and Google's cloud.
+
 ## How to build
 * Install Rust via [rustup](https://rustup.rs/).
 * Clone this repo
