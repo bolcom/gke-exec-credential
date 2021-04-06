@@ -1,0 +1,11 @@
+[package]
+name = "gke-exec-credential"
+version = "0.1.0"
+authors = ["Roy Jacobs <rjacobs@bol.com>"]
+edition = "2018"
+
+[dependencies]
+anyhow = "1"
+chrono = "0.4"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
