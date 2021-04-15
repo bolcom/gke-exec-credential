@@ -52,6 +52,10 @@ fn refresh_token() -> Result<ExecCredential> {
         .arg("--format=json")
         .arg("--force-auth-refresh")
         .output()?;
+    let err = &String::from_utf8(output.stderr)?;
+    if !err.is_empty() {
+        return Err(anyhow::anyhow!("gke-exec-credential encountered a problem invoking 'gcloud'.\n\n{}", err));
+    }
     let json = &String::from_utf8(output.stdout)?;
     let result: HashMap<String, Value> = serde_json::from_str(json)?;
     let token = result["credential"]["access_token"].as_str().unwrap().into();
